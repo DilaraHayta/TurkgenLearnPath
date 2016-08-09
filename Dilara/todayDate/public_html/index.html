@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Date Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .button{
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            margin: 2px;
+        }
+        
+        .button:hover{
+            background-color: gray;
+            color:black;
+        }
+        
+        .mal {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .mal:hover {
+            background-color: #45a049;
+        }
+        div {
+            border-radius: 5px;
+            background-color:#ccffe6;
+            padding: 20px;
+            margin-top: 100px;
+        }
+        
+    </style>
+</head>
+<body style="background-color:#6fc7b0;">
+
+<div>
+    <form>
+        <fieldset>
+            <legend style="margin:0 auto;color:#007acc">Today's Date</legend>
+            <p id="demo" style="color:#007acc;margin:0 auto;width: 9%"></p>
+        </fieldset>
+    </form>
+</div>   
+
+<div>
+    <form name="myForm"  onsubmit=" return false" method="post" >
+        <fieldset ><legend style="margin:0 auto;">Calculation Operations</legend>
+            Enter a date: <input class="mal" type="date" name="fname" id="fnamed"/>
+            <input class="button" type="button" value="Calculate" onclick="calculate()">
+                <p id="demo1"></p>
+        </fieldset>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var d= new Date();
+    document.getElementById("demo").innerHTML=d.toDateString();
+    d=Date.parse(d);
+    
+    function calculate(){
+        var f;
+        var sonuc;
+        f=document.getElementById("fnamed").value;
+        f=Date.parse(f);
+        
+        if(d>f){
+            sonuc=d-f;
+            sonuc=Math.floor(sonuc/86400000);
+            document.getElementById("demo1").innerHTML=sonuc+" day(s) ago";
+            
+        }
+        else if(d<f){
+            sonuc=f-d;
+            sonuc=Math.ceil(sonuc/86400000);
+            document.getElementById("demo1").innerHTML=sonuc+" day(s) after";
+        }
+        
+        else{
+            document.getElementById("demo1").innerHTML="Today is Today";
+        }
+}
+              
+</script>
+</body>
+</html>
